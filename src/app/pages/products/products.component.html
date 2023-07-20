@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="container mt-5">
+    <form>
+        <div class="mb-3">
+            <label for="input" class="form-label">Buscar productos</label>
+            <input type="text" class="form-control" id="input" (keyup)="search($event)">
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-7 col-md-6 col-md-5 col-xl-4 col-xxl-3 mb-3" *ngFor="let product of products">
+            <div class="card" style="width: 18rem;">
+                <img [src]="product.images[0]" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.title}}</h5>
+                    <div class="row">
+                        <div class="col-6"><span class="badge bg-secondary"><i
+                                    class="bi bi-bookmark"></i>{{product.category.name}}</span></div>
+                        <div class="col-6"><span>Precio: <b>${{product.price}}</b></span></div>
+                    </div>
+
+                    <p class="card-text">{{product.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" (click)="offset=offset-limit; getProducts()">
+                <a class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item" (click)="offset=offset+limit; getProducts()">
+                <a class="page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
